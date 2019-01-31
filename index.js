@@ -1,7 +1,6 @@
 var request = require('request-promise')
 var cheerio = require('cheerio')
 var debug = require('debug')('youtube-video-info')
-var isFunction = require('lodash.isfunction')
 
 module.exports = function fetchVideoInfo (videoId, opts, callback) {
   if (!videoId) {
@@ -9,7 +8,7 @@ module.exports = function fetchVideoInfo (videoId, opts, callback) {
   }
 
   const language = (opts && typeof opts === 'object' && "language" in opts) ? opts.language : 'en-US'
-  if (opts && isFunction(opts)) {
+  if (opts && typeof opts === 'function') {
     callback = opts
   }
 
@@ -38,7 +37,7 @@ module.exports = function fetchVideoInfo (videoId, opts, callback) {
     })
   })
 
-  if (callback && isFunction(callback)) {
+  if (callback && typeof callback === 'function') {
     pendingPromise
       .then(function (result) {
         callback(null, result)

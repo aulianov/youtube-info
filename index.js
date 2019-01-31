@@ -108,10 +108,11 @@ module.exports = function fetchVideoInfo (videoId, opts, callback) {
 
   function parseVideoInfo (body) {
     debug('Parsing YouTube page %s', videoId)
-    var $ = cheerio.load(body)
+    var $ = cheerio.load(body, {decodeEntities: false})
 
     var url = extractValue($('.watch-main-col link[itemprop="url"]'), 'href')
-    var title = extractValue(
+    let language = $('html').attr('lang') || language
+    var title = $('#eow-title').text().replace(/^\s+|\s+$/g, '') || extractValue(
       $('.watch-main-col meta[itemprop="name"]'),
       'content'
     )
@@ -184,9 +185,15 @@ module.exports = function fetchVideoInfo (videoId, opts, callback) {
 
     var channelThumbnailUrl =  $('.yt-user-photo .yt-thumb-clip img').data('thumb')
 
+    const tags = [];
+    $('meta[property="og:video:tag"]').each(function(i, elem) {
+      tags[i] = $(this).attr('content');
+    });
+
     return {
       videoId: videoId,
       url: url,
+      language: language,
       title: title,
       description: description,
       owner: owner,
@@ -203,7 +210,8 @@ module.exports = function fetchVideoInfo (videoId, opts, callback) {
       regionsAllowed: regionsAllowed,
       dislikeCount: dislikeCount,
       likeCount: likeCount,
-      channelThumbnailUrl: channelThumbnailUrl
+      channelThumbnailUrl: channelThumbnailUrl,
+      tags: tags
     }
   }
 }

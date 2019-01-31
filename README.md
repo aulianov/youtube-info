@@ -1,7 +1,5 @@
 # Youtube Info
 
-[![Build Status](https://travis-ci.org/aulianov/youtube-info.svg?branch=master)](https://travis-ci.org/aulianov/youtube-info)
-
 ## Purpose
 
 A Node.js module that fetches meta information about YouTube videos. The information is scraped directly from the YouTube website, so no need for a Google API-key.
@@ -13,7 +11,7 @@ A Node.js module that fetches meta information about YouTube videos. The informa
 Install as a module via npm.
 
 ```bash
-$ npm install @aulianov/youtube-info
+$ npm install aulianov/youtube-info
 ```
 
 ## Usage

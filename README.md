@@ -1,6 +1,6 @@
 # Youtube Info
 
-[![Build Status](https://travis-ci.org/philbot9/youtube-info.svg?branch=master)](https://travis-ci.org/philbot9/youtube-info)
+[![Build Status](https://travis-ci.org/aulianov/youtube-info.svg?branch=master)](https://travis-ci.org/aulianov/youtube-info)
 
 ## Purpose
 
@@ -13,7 +13,7 @@ A Node.js module that fetches meta information about YouTube videos. The informa
 Install as a module via npm.
 
 ```bash
-$ npm install youtube-info
+$ npm install @aulianov/youtube-info
 ```
 
 ## Usage
@@ -24,10 +24,15 @@ $ npm install youtube-info
 var fetchVideoInfo = require('youtube-info');
 fetchVideoInfo(videoId, cb);
 ```
+or for different languages:
+``` javascript
+fetchVideoInfo(videoId, {language: 'fr'}, cb);
+```
 
 | Parameter     | Meaning       |
 |:--------------|:---------------|
 | videoId       | ID of youtube Video |
+| params        | (optional) language option
 | callback      | (optional) callback function |
 
 ### Promises API
@@ -55,6 +60,7 @@ fetchVideoInfo('{videoId}', function (err, videoInfo) {
 {
   videoId: '{video Id}',
   url: '{video url}',
+  language: '{language from input option}',
   title: '{video title}',
   description: '{video description as HTML}',
   owner: '{video owner}',
@@ -72,7 +78,8 @@ fetchVideoInfo('{videoId}', function (err, videoInfo) {
   commentCount: {number of comments},
   likeCount: {number of likes},
   dislikeCount: {number of dislikes},
-  channelThumbnailUrl: {channel thumbnail url}
+  channelThumbnailUrl: {channel thumbnail url},
+  "tags": [{array of tags}],
 }
 
 ```

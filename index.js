@@ -252,6 +252,6 @@ function parseDuration (raw) {
 }
 
 function parseVotes (raw) {
-  var rawCleaned = raw.split(',').join('')
+  var rawCleaned = raw.replace(/([\D])/gim, '')
   return parseInt(rawCleaned, 10)
 }

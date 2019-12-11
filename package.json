@@ -1,6 +1,6 @@
 {
   "name": "youtube-info",
-  "version": "1.4.4",
+  "version": "1.5.1",
   "description": "Fetch meta information about YouTube videos",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "author": "Philip Klostermann <philip.klostermann@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0-rc.3",
     "debug": "^4.1.1",
     "request": "2.88.0",
     "request-promise": "^4.2.5"
